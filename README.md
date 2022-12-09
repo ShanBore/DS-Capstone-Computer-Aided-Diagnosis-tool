@@ -1,4 +1,16 @@
-# Getting Started with Create React App
+# The Densenet121.py is for the classification model implementation.
+
+The model is saved has Chnet.h5 and is available in the DS Capstone Backend.
+
+# ClassActivation.py contains the Class Activation Mapping implementation.
+
+The Class activation mapping.py requires importing the Chnet.py as the learning model.
+
+# The requirements.txt
+
+All the dependencies required along with the versions are listed in requirements.txt in DS Capstone Backend.
+
+# Setting up the React UI based tool
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
