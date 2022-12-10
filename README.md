@@ -31,3 +31,10 @@ The Class activation mapping.py requires importing the Chnet.py as the learning 
 3 Now enter yarn.start.
 
 4 The frontend server will be running in the port localhost:3000.
+
+
+
+
+# Data.
+
+https://drive.google.com/file/d/1bum9Sehb3AzUMHLhBMuowPKyr_PCrB3a/view
