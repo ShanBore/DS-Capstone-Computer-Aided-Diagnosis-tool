@@ -24,7 +24,7 @@ The Class activation mapping.py requires importing the Chnet.py as the learning 
 
 ##Frontend.
 
-##1 In the terminal, go to the directory where yarn.lock and package.json are located. 
+##1 In the terminal, go to the directory where yarn.lock and package.json are located.
 ##2 Enter the command yarn which will install all the required dependencies.
 ##3 Now enter yarn.start.
 ##4 The frontend server will be running in the port localhost:3000.
