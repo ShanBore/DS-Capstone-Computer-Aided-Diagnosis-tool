@@ -14,6 +14,7 @@ app = Flask(__name__)
 CORS(app)
 basedir = os.path.abspath(os.path.dirname(__file__))
 uploads_path = os.path.join(basedir, 'uploads')
+m = tf.keras.models.load_model("Chnet.h5")
 
 
 @app.route("/process_image", methods=["POST"])
@@ -21,7 +22,6 @@ async def process_image():
     file_name = str(uuid.uuid4())
     file = request.files['myFile']
     file.save(os.path.join(uploads_path, file.filename))
-    m = tf.keras.models.load_model("Chnet.h5")
     file_path = uploads_path + "\\" + file.filename
     file_path = str(file_path)
     single_image = cv2.imread(file_path)
@@ -61,4 +61,4 @@ async def process_image():
 
 @app.route("/process_image/<file_name>", methods=["GET"])
 def get_image(file_name):
-    return send_file(f"D:\Personal Docs\image-classification-and-deployed-using-flask\{file_name}.jpeg", mimetype='image/jpeg')
+    return send_file(f"D:\Personal Docs\DS-Capstone-Computer-Aided-Diagnosis-tool\DS Capstone Backend\{file_name}.jpeg", mimetype='image/jpeg')

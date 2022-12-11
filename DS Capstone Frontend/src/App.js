@@ -15,13 +15,15 @@ class App extends Component {
 	
 	onFileChange = event => {
 	
-	this.setState({ selectedFile: event.target.files[0], uploaded_image_url: URL.createObjectURL(event.target.files[0])});
-	console.log(this.state.uploaded_image_url)
-	
+	this.setState({ selectedFile: event.target.files[0], uploaded_image_url: URL.createObjectURL(event.target.files[0]), image_url: ""});	
 };
 
+clearSelection = () => {
+	this.setState({image_url: "", uploaded_image_url: "", selectedFile: null})
+}
+
 onFileUpload = () => {
-	this.setState({loader: true})
+	this.setState({loader: true, uploaded_image_url: "", image_url: ""})
 	const formData = new FormData();
 	
 	formData.append(
@@ -32,12 +34,12 @@ onFileUpload = () => {
 		
 		axios.post("http://localhost:5000/process_image", formData)
 		.then(res => {
-			console.log(res.data)
 			this.setState({
 				class_prediction: res.data[1],
+				uploaded_image_url: URL.createObjectURL(this.state.selectedFile)
 				// loader: false
 			});
-			setTimeout(() => {this.setState({image_url: res.data[0], loader: false}); console.log(this.state.image_url)}, 3000);
+			setTimeout(() => {this.setState({image_url: res.data[0], loader: false})}, 3000);
 		})
     .catch(err => console.log(err));
 	};
@@ -64,7 +66,6 @@ onFileUpload = () => {
 };
 
 render() {
-	console.log(this.state.selectedFile)
 	return (
 		<div style={{
 				overflowY:"auto",
@@ -85,8 +86,8 @@ render() {
 							<input hidden accept="image/*" type="file" onChange={this.onFileChange}/>
 						</Button>				
 				{/* <input type="file" onChange={this.onFileChange} /> */}
-						<button style={{marginLeft: "50px"}} onClick={this.onFileUpload}>
-							Generate
+						<button style={{marginLeft: "50px"}} onClick={!this.state.image_url ? this.onFileUpload: this.clearSelection}>
+							{this.state.image_url ? "Clear" : "Generate"}
 						</button>
 							{this.state.loader && 
 							// <LinearProgress/>
